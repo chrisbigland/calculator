@@ -16,12 +16,33 @@
 
     height: 80vh;
     width: 50vh;
-    border: 10px solid black;
+    border: 5px solid #335C8A;
+    border-radius: 20px;
     margin: 20px;
-    background-color: yellow;
+    background-color: #DDF1FE;
 }
 
 #calc-container {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    height: 11.5%;
+    width: 25%;
+    border: solid red 2px;
+    font-size: 25px;
+    color: black;
+}
+
+#screen {
+    background-color: lightgray;
+    height: 20%;
+    width: 80%;
+    border-radius: 10px;
+}
+
+#screen-container {
     display: flex;
     justify-content: center;
 }
