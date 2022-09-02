@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+#heading {
+    font-size: 2em;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+#calculator {
+
+    height: 80vh;
+    width: 50vh;
+    border: 10px solid black;
+    margin: 20px;
+    background-color: yellow;
+}
+
+#calc-container {
+    display: flex;
+    justify-content: center;
+}
