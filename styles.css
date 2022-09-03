@@ -28,12 +28,24 @@
 }
 
 .button {
-    height: 12.5%;
+    height: 15%;
     width: 20%;
     border: solid red 2px;
-    font-size: 25px;
+    font-size: 1.5em;
     color: black;
 }
+
+#on-button {
+    height: 15%;
+    width: 75%;
+    border: solid red 2px;
+    font-size: 1.5em;
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+
 
 #screen {
     background-color: lightgray;
@@ -50,3 +62,19 @@
     width: 100%;
     border-radius: 5px;
 }
+
+#keys {
+    /* display: grid;
+    grid-template-areas: ; */
+}
+
+#on-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+/* 
+#keys {
+    display: grid;
+    grid-templ
+} */
