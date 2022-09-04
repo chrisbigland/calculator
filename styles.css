@@ -28,17 +28,22 @@
 }
 
 .button {
-    height: 15%;
-    width: 20%;
-    border: solid red 2px;
+    height: 100%;
+    width: 100%;
+    border: solid gray 2px;
+    border-radius: 5px;
     font-size: 1.5em;
     color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #on-button {
     height: 15%;
     width: 75%;
-    border: solid red 2px;
+    border: solid gray 2px;
+    border-radius: 5px;
     font-size: 1.5em;
     color: black;
     display: flex;
@@ -52,6 +57,7 @@
     height: 90%;
     width: 80%;
     border-radius: 10px;
+    border: solid black 2px;
 }
 
 #screen-container {
@@ -61,20 +67,25 @@
     height: 20%;
     width: 100%;
     border-radius: 5px;
+    padding-top: 5%;
 }
 
 #keys {
-    /* display: grid;
-    grid-template-areas: ; */
+    padding: 20% 10% 0% 10%;
+
 }
 
 #on-container {
     width: 100%;
     display: flex;
     justify-content: center;
+    padding-top: 10%;
 }
-/* 
+
 #keys {
     display: grid;
-    grid-templ
-} */
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 20%;
+    column-gap: 10%;
+}
