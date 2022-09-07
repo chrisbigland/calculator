@@ -1,9 +1,10 @@
 
 //VARIABLES
-const numberButtons = document.querySelectorAll('.number-button');
+const numberButtons = document.querySelectorAll(".number-button");
 const operatorButtons = document.querySelectorAll(".operator-button");
 const screen = document.querySelector("#screen");
-const equals = document.querySelector('#equals');
+const equals = document.querySelector("#equals");
+const onButton = document.querySelector("#on-button");
 
 console.log(numberButtons);
 
@@ -16,6 +17,11 @@ let secondNumber = "";
 //     screen.innerText = number;
 // }
 
+//CLEAR SCREEN
+onButton.addEventListener('click', () => {
+    screen.innerText = ("0");
+})
+
 
 // added for 
 //creating a for each to loop through the node list 
@@ -23,7 +29,10 @@ numberButtons.forEach(number => {
     number.addEventListener('click', (e) => {
         // console.log(e.target.innerText);
         firstNumber = e.target.innerText;   // updating the variable to what is clicked
-        console.log(firstNumber);  //checking it works
+        console.log("first number is " + firstNumber);  //checking it works
+        // if (firstNumber != "" || firstNumber > 0) {
+        //     return 
+        // }
         screen.innerText = firstNumber;     
         return firstNumber; 
         // updateDisplay(initialNumber);
@@ -31,35 +40,29 @@ numberButtons.forEach(number => {
 })
 
 operatorButtons.forEach(operator => {          // when every operator button is clicked, updating 'oper' variable to the operation e.g. times
-    operator.addEventListener("click", (e) => {
+    operator.addEventListener('click', (e) => {
         oper = e.target.innerText;              //checking it works
-        console.log(oper);
+        console.log("operator is " + oper);
         secondNumber = firstNumber;             // second number equal to first number
-        // console.log("second number is:" + secondNumber)
         firstNumber = "";                       // first number set to empty string
+        console.log("second number is: " + secondNumber + " and first number is: " + firstNumber)
         return oper;                            // returning the clicked operator
     })
 })
 
 //FUNCTIONS
 //OPERATOR FUNCTIONS
-const plusOperator = (a, b) => parseFloat(a) + parseFloat(b); // turning the string parameters into numbers - shorthand everything after arrow is assumed to be returned
+const plusOperator = (a, b) => parseFloat(a) + parseFloat(b); // turning the string parameters into numbers - shorthand everything after arrow is assumed to be returned - can do this was was previously just one line return
 
-const minusOperator = (a, b) => {
-    return a - b;                       
-}
+const minusOperator = (a, b) => parseFloat(a) - parseFloat(b);                    
 
-const timesOperator = (a, b) => {
-    return a * b;
-}
+const timesOperator = (a, b) => parseFloat(a) * parseFloat(b);
 
-const divideOperator = (a, b) => {
-    return a / b;                       
-}
+const divideOperator = (a, b) => parseFloat(a) / parseFloat(b);
 
 
 //EQUALS CLICK EVENT LISTENER
-equals.addEventListener("click", (e) => {
+equals.addEventListener('click', (e) => {
     // secondNumber = screen.innerText; // secondNumber set to what's on screen when hitting equals - why did I not need the event passed through here?
     // console.log(`firstNumber: ${firstNumber}`, `secondNumber: ${secondNumber}`)
 
@@ -81,33 +84,41 @@ equals.addEventListener("click", (e) => {
             console.log(typeof sum);
             const sumStr = sum.toString();
             console.log(typeof sumStr);
-            return sumStr;
+            screen.innerText = sumStr;
+            return sumStr;                                      // WORKING
         } 
         else if (oper === "-") {
             const minus = minusOperator(secondNumber, firstNumber)
             console.log(minus);
-            // return minus;
+            const minusStr = minus.toString();
+            console.log(typeof minusStr);
+            screen.innerText = minusStr;
+            return minusStr;                                    // WORKING
         } 
-        else if (oper === "*") {
-            const times = plusOperator(secondNumber, firstNumber)
+        else if (oper === "x") {
+            const times = timesOperator(secondNumber, firstNumber)
             console.log(times);  
-            // return times;   
+            const timesStr = times.toString();
+            console.log(typeof timesStr);
+            screen.innerText = timesStr;
+            return timesStr;                                    // WORKING
         } 
         else {
             const divide = divideOperator(secondNumber, firstNumber)
             console.log(divide);
-            // return divide;
+            const divideStr = divide.toString();
+            console.log(typeof divideStr);
+            screen.innerText = divideStr;
+            return divideStr;                                    // WORKING
         }
     };
 
 
-    // remaining actions
-    // commit changes
-    // make result of calculation appear on screen - need to place 'sum/divide/times/minus' variables into InnerHTML
-    //make remaining calculations work
-    // make clear screen work 
+    // REMAINING ACTIONS
     // make multiple digit numbers appear and calculations work
+    // make additions of multiple numbers work e.g. 5 + 9 + 10 = 24
     // make decimal point work
+    // make screen responsive to size when number gets too large e.g. lots of decimal places (use 'auto' size for this?)
     // change the name of the first and second number variables to make them make more sense
 
 
