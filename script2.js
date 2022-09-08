@@ -8,7 +8,7 @@ const onButton = document.querySelector("#on-button");
 let firstNumber = "";
 let oper = "";
 let secondNumber = "";
-// let storedNumberArr = [];
+let storedNumberArr = [];
 let numberArr = [];
 
 
@@ -46,6 +46,8 @@ operatorButtons.forEach(operator => {          // when every operator button is 
         // console.log(`storedNumberArr is: ${storedNumberArr}`); 
         // console.log("operator is " + oper);//checking it works
         secondNumber = firstNumber;             // second number equal to first number
+        storedNumberArr.push(secondNumber);
+        console.log(storedNumberArr);
         firstNumber = "";                       // first number set to empty string
         console.log("second number is: " + secondNumber + " and first number is: " + firstNumber)
         // screen.innerText = oper;

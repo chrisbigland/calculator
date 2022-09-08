@@ -28,9 +28,11 @@ numberButtons.forEach(number => {
         // console.log(typeof numberArr)
         // console.log("this should show what's on the screen: " + screen.innerText);
         firstNumber = screen.innerText;
+        storedNumberArr.push(firstNumber);  
         // console.log(typeof storedNumberArr)
         console.log(`storedNumberArr is: ${storedNumberArr}`);
         console.log("first number is: " + firstNumber + " and second number is: " + secondNumber)  // firstNumber variable now set
+        // if (storedNumberArr > ) if statement here? If stored number array has more than 2 items, perform the calculation function? Then could display on screen?
     })
 })
 
@@ -44,14 +46,14 @@ operatorButtons.forEach(operator => {          // when every operator button is 
         ///TURN THIS INTO A FOR LOOP? every time button clicked (starting second time), calculation occurs and number displayed on screen. Create it separately as a variable and add in here?
         numberArr = [];         // when clicking on oper, array clears
         oper = e.target.innerText;    
-        storedNumberArr.push(firstNumber);         
+               
         console.log(`storedNumberArr is: ${storedNumberArr}`); 
         // console.log("operator is " + oper);//checking it works
         secondNumber = firstNumber;             // second number equal to first number
         firstNumber = "";                       // first number set to empty string
         console.log("second number is: " + secondNumber + " and first number is: " + firstNumber)
         // screen.innerText = oper;
-        numberVariablesForLoop();
+        // numberVariablesForLoop();
         return oper;                            // returning the clicked operator
     })
 })
@@ -130,12 +132,12 @@ const calculate = () => {
 
 
     
-     const numberVariablesForLoop = () => {
+    //  const numberVariablesForLoop = () => {
 
-        for (let i = 1; i < storedNumberArr.length; i++) {
-            console.log(`for loop stored number Array ${storedNumberArr[i]}`);
-        }
-    }
+    //     for (let i = 1; i < storedNumberArr.length; i++) {
+    //         console.log(`for loop stored number Array ${storedNumberArr[i]}`);
+    //     }
+    // }
 
 
 // store all of the numbers into an array and loop them to perform the calculation. for the subtotal, use a for loop but only start it on index 1 (second number)
