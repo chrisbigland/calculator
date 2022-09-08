@@ -1,87 +1,116 @@
-const numberButtons = document.querySelectorAll('.number-button');
+
+//VARIABLES
+const numberButtons = document.querySelectorAll(".number-button");
 const operatorButtons = document.querySelectorAll(".operator-button");
 const screen = document.querySelector("#screen");
-const equals = document.querySelector('#equals');
-
-console.log(numberButtons);
-
-// const getNumberPressed = () => {
-
-// }
-
+const equals = document.querySelector("#equals");
+const onButton = document.querySelector("#on-button");
 let firstNumber = "";
 let oper = "";
 let secondNumber = "";
 
-// const updateDisplay = (number) => {
-//     screen.innerText = number;
-// }
+let numberArr = [];
 
 
-// added for 
-//creating a for each to loop through the node list 
+onButton.addEventListener('click', () => {
+    screen.innerText = ("0");
+})
+
+//adds numbers to an array every time button is pressed
 numberButtons.forEach(number => {
-    number.addEventListener('click', (e) => {
-        // console.log(e.target.innerText);
-        firstNumber = e.target.innerText;   // updating the variable to what is clicked
-        console.log(firstNumber);  //checking it works
-        screen.innerText = firstNumber;      
-        // updateDisplay(initialNumber);
+    number.addEventListener("click", (e) => {
+        numberArr.push(e.target.innerText) // need to add the number to an array
+        console.log(numberArr);
+        screen.innerText = numberArr.join(""); // removing commas and displaying on screen
+        // console.log(typeof numberArr)
+        console.log("this should show what's on the screen: " + screen.innerText);
+        firstNumber = screen.innerText;
+        console.log("first number is: " + firstNumber)  // firstNumber variable now set
     })
 })
+
+
+// when I press an operator, save the number on the screen to a variable
+
+
 
 operatorButtons.forEach(operator => {          // when every operator button is clicked, updating 'oper' variable to the operation e.g. times
-    operator.addEventListener("click", (e) => {
-        oper = e.target.innerText;              //checking it works
-        console.log(oper);
-        // number.removeEventListener()
+    operator.addEventListener('click', (e) => {
+        numberArr = [];         // when clicking on oper, array clears
+        oper = e.target.innerText;              
+        console.log("operator is " + oper);//checking it works
+        secondNumber = firstNumber;             // second number equal to first number
+        firstNumber = "";                       // first number set to empty string
+        console.log("second number is: " + secondNumber + " and first number is: " + firstNumber)
+        // screen.innerText = oper;
+        return oper;                            // returning the clicked operator
     })
 })
 
-// equals.addEventListener("click", (e) => {
-//     e.target.innerText = secondNumber; 
-//     console.log(secondNumber)
-//     });
+//FUNCTIONS
+//OPERATOR FUNCTIONS
+const plusOperator = (a, b) => parseFloat(a) + parseFloat(b); // turning the string parameters into numbers - shorthand everything after arrow is assumed to be returned - can do this was was previously just one line return
+
+const minusOperator = (a, b) => parseFloat(a) - parseFloat(b);                    
+
+const timesOperator = (a, b) => parseFloat(a) * parseFloat(b);
+
+const divideOperator = (a, b) => parseFloat(a) / parseFloat(b);
+
+//EQUALS CLICK EVENT LISTENER
+equals.addEventListener('click', (e) => {
+    // secondNumber = screen.innerText; // secondNumber set to what's on screen when hitting equals - why did I not need the event passed through here?
+    // console.log(`firstNumber: ${firstNumber}`, `secondNumber: ${secondNumber}`)
+
+    calculate();
+    // console.log();
+    });
 
 
-// when pressing equals - set second variable and perform calculation??
+// //CALCULATION
+const calculate = () => {
+    if (oper === "+") {
+        const sum = plusOperator(secondNumber, firstNumber) //put second number as first parameter as secondNumber has actually become the first number we entered and moved
+        console.log(typeof sum);
+        const sumStr = sum.toString();
+        console.log(typeof sumStr);
+        screen.innerText = sumStr;
+        numberArr = [];
+        return sumStr;                                      // WORKING
+    } 
+    else if (oper === "-") {
+        const minus = minusOperator(secondNumber, firstNumber)
+        console.log(minus);
+        const minusStr = minus.toString();
+        console.log(typeof minusStr);
+        screen.innerText = minusStr;
+        numberArr = [];
+        return minusStr;                                    // WORKING
+    } 
+    else if (oper === "x") {
+        const times = timesOperator(secondNumber, firstNumber)
+        console.log(times);  
+        const timesStr = times.toString();
+        console.log(typeof timesStr);
+        screen.innerText = timesStr;
+        numberArr = [];
+        return timesStr;                                    // WORKING
+    } 
+    else {
+        const divide = divideOperator(secondNumber, firstNumber)
+        console.log(divide);
+        const divideStr = divide.toString();
+        console.log(typeof divideStr);
+        screen.innerText = divideStr;
+        numberArr = [];
+        return divideStr;                                    // WORKING
+    }
+};
 
-
-
-// if oper has a value then run second Number forEach (save forEaches as variable method?)
-// if oper has a value then stop the first event listener?
-// if (oper != "") {
-
-//     numberButtons.forEach(number => {
-//     number.addEventListener('click', (e) => {
-//         secondNumber = e.target.innerText;   // updating the variable to what is clicked
-//         console.log(secondNumber);  //checking it works
-//         screen.innerText = secondNumber;      
-//     })
-// })
-// }
-
-
-
-// then could do if secondNumber has a value
-
-
-// forEach for storing second number variable. 
-// numberButtons.forEach(number => {
-//     number.addEventListener('click', (e) => {
-//         secondNumber = e.target.innerText;   // updating the variable to what is clicked
-//         console.log(secondNumber);  //checking it works
-//         screen.innerText = secondNumber;      
-//     })
-// })
-
-
-// //calculation function
-// const calculate = (num1, num2, operator) => {
-//     console.log(num1);
-// }
-
-
-// equals.addEventListener('click', () => {
-//     calculate(firstNumber)
-// });
+    // REMAINING ACTIONS
+    // make additions of multiple numbers work e.g. 5 + 9 + 10 = 24
+    // make decimal point work
+    // make screen responsive to size when number gets too large e.g. lots of decimal places (use 'auto' size for this?)
+    // change the name of the first and second number variables to make them make more sense
+    // make the calculator only use the last operand entered. E.g. currently it won't work if clicking + then changing mind and hitting -
+    // need to be able to perform operation on screen value after calculation
