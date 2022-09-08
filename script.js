@@ -1,4 +1,4 @@
-
+// first script - works with single digits only
 //VARIABLES
 const numberButtons = document.querySelectorAll(".number-button");
 const operatorButtons = document.querySelectorAll(".operator-button");
@@ -30,14 +30,32 @@ numberButtons.forEach(number => {
         // console.log(e.target.innerText);
         firstNumber = e.target.innerText;   // updating the variable to what is clicked
         console.log("first number is " + firstNumber);  //checking it works
-        // if (firstNumber != "" || firstNumber > 0) {
-        //     return 
-        // }
-        screen.innerText = firstNumber;     
+        screen.innerText = firstNumber;   // change this to a new function called update display??
+            // if (number.addEventListener('click', (e) => { != "" || firstNumber != 0) {    Maybe add an event listener for if there is a second click?
+            // number.addEventListener('click', (e) => {
+        updateDisplay();
         return firstNumber; 
+        
         // updateDisplay(initialNumber);
     })
 })
+
+// const updateDisplay = () => {
+//     if (screen.innerText != "" || screen.innerText > 0) {
+//         numberButtons.forEach(number => {
+//             number.addEventListener('click', (e) => {
+//                 const secondDigit = e.target.innerText;
+//                 console.log("first number type is " + typeof firstNumber)
+//                 console.log("secondDigit type is " + typeof secondDigit)
+//                 console.log("firstNumber is " + firstNumber)
+//                 console.log("secondDigit is " + secondDigit)
+//                 const fullNumber = firstNumber + secondDigit;
+//                 // screen.innerText = fullNumber;
+//             })
+//     })
+
+// }}
+
 
 operatorButtons.forEach(operator => {          // when every operator button is clicked, updating 'oper' variable to the operation e.g. times
     operator.addEventListener('click', (e) => {
@@ -116,15 +134,17 @@ equals.addEventListener('click', (e) => {
 
     // REMAINING ACTIONS
     // make multiple digit numbers appear and calculations work
+    //when someone hits 'ON/AC' - screen should clear
     // make additions of multiple numbers work e.g. 5 + 9 + 10 = 24
     // make decimal point work
     // make screen responsive to size when number gets too large e.g. lots of decimal places (use 'auto' size for this?)
     // change the name of the first and second number variables to make them make more sense
+    // make the calculator only use the last operand entered. E.g. currently it won't work if clicking + then changing mind and hitting -
 
 
 
     //CLEAR SCREEN
-    //when someone hits 'ON/AC' - screen should clear
+    //
 
     // screen.EventListener("click", (e) => {
     //     screen.innerText = "0";

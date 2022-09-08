@@ -1,3 +1,5 @@
+//script4 - trying to make decimal point work
+
 // second script - works with double digits but needs to be able to do multiple sums
 //VARIABLES
 const numberButtons = document.querySelectorAll(".number-button");

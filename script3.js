@@ -1,4 +1,4 @@
-// second script - works with double digits but needs to be able to do multiple sums
+//script 3 - attempting to do multiple sums e.g. 3 + 4 + 5
 //VARIABLES
 const numberButtons = document.querySelectorAll(".number-button");
 const operatorButtons = document.querySelectorAll(".operator-button");
@@ -8,14 +8,15 @@ const onButton = document.querySelector("#on-button");
 let firstNumber = "";
 let oper = "";
 let secondNumber = "";
-// let storedNumberArr = [];
+let storedNumberArr = [];
+// const createNumberVariables 
 let numberArr = [];
 
 
 onButton.addEventListener('click', () => {
     screen.innerText = ("0");
     numberArr = [];
-    // storedNumberArr = [];
+    storedNumberArr = [];
 })
 
 //adds numbers to an array every time button is pressed
@@ -28,7 +29,7 @@ numberButtons.forEach(number => {
         // console.log("this should show what's on the screen: " + screen.innerText);
         firstNumber = screen.innerText;
         // console.log(typeof storedNumberArr)
-        // console.log(`storedNumberArr is: ${storedNumberArr}`);
+        console.log(`storedNumberArr is: ${storedNumberArr}`);
         console.log("first number is: " + firstNumber + " and second number is: " + secondNumber)  // firstNumber variable now set
     })
 })
@@ -40,15 +41,17 @@ numberButtons.forEach(number => {
 
 operatorButtons.forEach(operator => {          // when every operator button is clicked, updating 'oper' variable to the operation e.g. times
     operator.addEventListener('click', (e) => {
+        ///TURN THIS INTO A FOR LOOP? every time button clicked (starting second time), calculation occurs and number displayed on screen. Create it separately as a variable and add in here?
         numberArr = [];         // when clicking on oper, array clears
         oper = e.target.innerText;    
-        // storedNumberArr.push(firstNumber);         
-        // console.log(`storedNumberArr is: ${storedNumberArr}`); 
+        storedNumberArr.push(firstNumber);         
+        console.log(`storedNumberArr is: ${storedNumberArr}`); 
         // console.log("operator is " + oper);//checking it works
         secondNumber = firstNumber;             // second number equal to first number
         firstNumber = "";                       // first number set to empty string
         console.log("second number is: " + secondNumber + " and first number is: " + firstNumber)
         // screen.innerText = oper;
+        numberVariablesForLoop();
         return oper;                            // returning the clicked operator
     })
 })
@@ -113,7 +116,7 @@ const calculate = () => {
     }
 };
 
-    // REMAINING ACTIONS
+        // REMAINING ACTIONS
     // make additions of multiple numbers work e.g. 5 + 9 + 10 = 24
     // for the above - could we add the typed numbers into an array and we can fetch the items when needed?
     // for the above - for the calculation, we could loop through the array to do this?
@@ -126,17 +129,17 @@ const calculate = () => {
     // need to be able to perform operation on screen value after calculation
 
 
+    
+     const numberVariablesForLoop = () => {
 
-    // const createNumberVariables = () => {
-    //     const storedNumberArr = [];   maybe don't need this part if declaring globally
-
-    //     for (let i = 0; i < storedNumberArr.length; i++) {
-
-    //     }
-    // }
+        for (let i = 1; i < storedNumberArr.length; i++) {
+            console.log(`for loop stored number Array ${storedNumberArr[i]}`);
+        }
+    }
 
 
 // store all of the numbers into an array and loop them to perform the calculation. for the subtotal, use a for loop but only start it on index 1 (second number)
+//FOR LOOP - for each click of the operator button, starting on the second click, of the array, add 
     //simpler?? the result of the calculation gets subtotalled in a variable and that gets added when equals is pressed
 
     // if it is the second time that a number is entered, perform the calculation function and save the answer of that in a variable
