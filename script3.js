@@ -1,4 +1,4 @@
-//script 3 - attempting to do multiple sums e.g. 3 + 4 + 5
+//script 3 - attempting to do multiple sums e.g. 3 + 4 + 5 .... ensure to add solution to script2
 //VARIABLES
 const numberButtons = document.querySelectorAll(".number-button");
 const operatorButtons = document.querySelectorAll(".operator-button");
@@ -27,11 +27,10 @@ numberButtons.forEach(number => {
         screen.innerText = numberArr.join(""); // removing commas and displaying on screen
         // console.log(typeof numberArr)
         // console.log("this should show what's on the screen: " + screen.innerText);
-        firstNumber = screen.innerText;
-        storedNumberArr.push(firstNumber);  
+        firstNumber = parseFloat(screen.innerText); 
         // console.log(typeof storedNumberArr)
         console.log(`storedNumberArr is: ${storedNumberArr}`);
-        console.log("first number is: " + firstNumber + " and second number is: " + secondNumber)  // firstNumber variable now set
+        console.log("first number is: " + firstNumber + " type: " + typeof firstNumber + " and second number is: " + secondNumber + " type: " + typeof secondNumber)  // firstNumber variable now set
         // if (storedNumberArr > ) if statement here? If stored number array has more than 2 items, perform the calculation function? Then could display on screen?
     })
 })
@@ -40,18 +39,18 @@ numberButtons.forEach(number => {
 // when I press an operator, save the number on the screen to a variable
 
 
-
+//OPERATOR EVENT LISTENER + / X -
 operatorButtons.forEach(operator => {          // when every operator button is clicked, updating 'oper' variable to the operation e.g. times
     operator.addEventListener('click', (e) => {
         ///TURN THIS INTO A FOR LOOP? every time button clicked (starting second time), calculation occurs and number displayed on screen. Create it separately as a variable and add in here?
         numberArr = [];         // when clicking on oper, array clears
-        oper = e.target.innerText;    
-               
+        oper = e.target.innerText; // oper variable gets set to either +, - , x, or /   
         console.log(`storedNumberArr is: ${storedNumberArr}`); 
         // console.log("operator is " + oper);//checking it works
-        secondNumber = firstNumber;             // second number equal to first number
-        firstNumber = "";                       // first number set to empty string
-        console.log("second number is: " + secondNumber + " and first number is: " + firstNumber)
+        secondNumber = firstNumber;             // second number becomes equal to first number
+        storedNumberArr.push(secondNumber);  // secondNumber gets added to storedNumberArr
+        firstNumber = "";                       // first number is set to empty string
+        console.log("first number is: " + firstNumber + " type: " + typeof firstNumber + " second number is: " + secondNumber + " type: " + typeof secondNumber)
         // screen.innerText = oper;
         // numberVariablesForLoop();
         return oper;                            // returning the clicked operator
@@ -61,6 +60,7 @@ operatorButtons.forEach(operator => {          // when every operator button is 
 //FUNCTIONS
 //OPERATOR FUNCTIONS
 const plusOperator = (a, b) => parseFloat(a) + parseFloat(b); // turning the string parameters into numbers - shorthand everything after arrow is assumed to be returned - can do this was was previously just one line return
+//for loop here +=
 
 const minusOperator = (a, b) => parseFloat(a) - parseFloat(b);                    
 
@@ -80,24 +80,39 @@ equals.addEventListener('click', (e) => {
 
 // //CALCULATION
 const calculate = () => {
+    storedNumberArr.push(firstNumber);
+    console.log(storedNumberArr);
+    console.log(oper)
     if (oper === "+") {
-        const sum = plusOperator(secondNumber, firstNumber) //put second number as first parameter as secondNumber has actually become the first number we entered and moved
-        console.log(typeof sum);
-        const sumStr = sum.toString();
-        console.log(typeof sumStr);
-        screen.innerText = sumStr;
-        numberArr = [];
-        return sumStr;                                      // WORKING
-    } 
+            let sum = 0;
+            for (let i = 0; i < storedNumberArr.length; i++) {
+                sum += storedNumberArr[i];
+        }
+        console.log("sum of these values is: " + sum)
+        screen.innerText = sum;
+        return sum
+    }
+        
+        // const sum = plusOperator(secondNumber, firstNumber) //put second number as first parameter as secondNumber has actually become the first number we entered and moved
+        // console.log(typeof sum);
+        // const sumStr = sum.toString();
+        // console.log(typeof sumStr);
+        // screen.innerText = sumStr;
+        // numberArr = [];
+        // return sumStr; // return sum instead so can be used in new calculation?                                     // WORKING
     else if (oper === "-") {
-        const minus = minusOperator(secondNumber, firstNumber)
-        console.log(minus);
-        const minusStr = minus.toString();
-        console.log(typeof minusStr);
-        screen.innerText = minusStr;
-        numberArr = [];
-        return minusStr;                                    // WORKING
-    } 
+        let subtraction = 0
+        // console.log(`subtraction value is currently: ${subtraction}`)
+        for (let i = 0; i < storedNumberArr.length; i++) {
+            subtraction = storedNumberArr[0] - storedNumberArr[i];
+        }
+        console.log("subtraction of these values is: " + subtraction)
+        screen.innerText = subtraction;
+    }
+    
+   // NOT YET WORKING
+
+
     else if (oper === "x") {
         const times = timesOperator(secondNumber, firstNumber)
         console.log(times);  
@@ -105,7 +120,7 @@ const calculate = () => {
         console.log(typeof timesStr);
         screen.innerText = timesStr;
         numberArr = [];
-        return timesStr;                                    // WORKING
+        return timesStr;                                    // NOT YET CHANGED
     } 
     else {
         const divide = divideOperator(secondNumber, firstNumber)
@@ -114,7 +129,7 @@ const calculate = () => {
         console.log(typeof divideStr);
         screen.innerText = divideStr;
         numberArr = [];
-        return divideStr;                                    // WORKING
+        return divideStr;                                    // NOT YET CHANGED
     }
 };
 
