@@ -127,6 +127,7 @@ const calculate = () => {
     // change the name of the first and second number variables to make them make more sense
     // make the calculator only use the last operand entered. E.g. currently it won't work if clicking + then changing mind and hitting -
     // need to be able to perform operation on screen value after calculation
+    // be able to use the result of a calculation as a number we can use for the next calculation e.g. 2 + 3 = 5. 5 still on screen -2 = 3 
 
 
 

@@ -121,7 +121,7 @@ const calculate = () => {
     // for the above - for the calculation, we could loop through the array to do this?
 
 
-    // make decimal point work
+    // d
     // make screen responsive to size when number gets too large e.g. lots of decimal places (use 'auto' size for this?)
     // change the name of the first and second number variables to make them make more sense
     // make the calculator only use the last operand entered. E.g. currently it won't work if clicking + then changing mind and hitting -
