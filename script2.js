@@ -5,6 +5,8 @@ const operatorButtons = document.querySelectorAll(".operator-button");
 const screen = document.querySelector("#screen");
 const equals = document.querySelector("#equals");
 const onButton = document.querySelector("#on-button");
+const decimalPoint = document.querySelector("#point");
+
 let firstNumber = "";
 let oper = "";
 let secondNumber = "";
@@ -30,6 +32,9 @@ numberButtons.forEach(number => {
         // console.log(typeof storedNumberArr)
         // console.log(`storedNumberArr is: ${storedNumberArr}`);
         console.log("first number is: " + firstNumber + " and second number is: " + secondNumber)  // firstNumber variable now set
+        if (firstNumber.includes(".")) {
+          decimalPoint.disabled = true;
+        }
     })
 })
 
@@ -50,6 +55,10 @@ operatorButtons.forEach(operator => {          // when every operator button is 
         console.log(storedNumberArr);
         firstNumber = "";                       // first number set to empty string
         console.log("second number is: " + secondNumber + " and first number is: " + firstNumber)
+        console.log("oper is " + oper)
+        if (!firstNumber.includes(".")) {        //check if it doesn't include point then enable
+            decimalPoint.disabled = false;
+          }
         // screen.innerText = oper;
         return oper;                            // returning the clicked operator
     })
@@ -123,7 +132,6 @@ const calculate = () => {
 
     // d
     // make screen responsive to size when number gets too large e.g. lots of decimal places (use 'auto' size for this?)
-    // change the name of the first and second number variables to make them make more sense
     // make the calculator only use the last operand entered. E.g. currently it won't work if clicking + then changing mind and hitting -
     // need to be able to perform operation on screen value after calculation
 

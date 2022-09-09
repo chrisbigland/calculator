@@ -11,7 +11,7 @@ body {
 
 #heading {
     font-size: 2em;
-    font-family:font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-decoration: underline;
     display: flex;
     justify-content: center;
@@ -36,6 +36,7 @@ body {
     height: 7vh;
     width: 7vh;
     border: solid gray 2px;
+    background-color: #F6FAF3;
     border-radius: 5px;
     font-size: 1.5em;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -49,6 +50,7 @@ body {
     height: 7vh;
     width: 7vh;
     border: solid gray 2px;
+    background-color: #F6FAF3;
     border-radius: 5px;
     font-size: 1.5em;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -62,6 +64,7 @@ body {
     height: 15%;
     width: 75%;
     border: solid gray 2px;
+    background-color: #F6FAF3;
     border-radius: 5px;
     font-size: 1.5em;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -74,6 +77,7 @@ body {
     height: 7vh;
     width: 7vh;
     border: solid gray 2px;
+    background-color: #F6FAF3;
     border-radius: 5px;
     font-size: 1.5em;
     color: black;
@@ -174,4 +178,3 @@ body {
         width: 5vh;
     }
 }
-/* @media screen and (max-width: 360px)  */
