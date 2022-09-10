@@ -100,17 +100,23 @@ const calculate = () => {
         // screen.innerText = sumStr;
         // numberArr = [];
         // return sumStr; // return sum instead so can be used in new calculation?                                     // WORKING
-    else if (oper === "-") {
-        let subtraction = 0
-        // console.log(`subtraction value is currently: ${subtraction}`)
-        for (let i = 0; i < storedNumberArr.length; i++) {
-            subtraction = storedNumberArr[0] - storedNumberArr[i];
-        }
-        console.log("subtraction of these values is: " + subtraction)
-        screen.innerText = subtraction;
-    }
+    // else if (oper === "-") {
+    //     let subtraction = storedNumberArr[0];
+    //     // console.log(`subtraction value is currently: ${subtraction}`)
+    //     for (let i = 0; i < storedNumberArr.length; i++) {
+    //         subtraction = subtraction - storedNumberArr[i];
+    //     }
+    //     console.log("subtraction of these values is: " + subtraction)
+    //     screen.innerText = subtraction;
+    // }
     
-   // NOT YET WORKING
+    else if (oper === "-") {
+        let subtraction = storedNumberArr.reduce((numberPlaceHolder1, numberPlaceHolder2) => numberPlaceHolder1 - numberPlaceHolder2);
+            console.log(`subtraction value is currently: ${subtraction}}`)
+            screen.innerText = subtraction;
+            return subtraction                            // WORKING
+    } 
+
 
 
     else if (oper === "x") {
