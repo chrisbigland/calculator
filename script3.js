@@ -84,13 +84,13 @@ const calculate = () => {
     console.log(storedNumberArr);
     console.log(oper)
     if (oper === "+") {
-            let sum = 0;
+            let addition = 0;
             for (let i = 0; i < storedNumberArr.length; i++) {
-                sum += storedNumberArr[i];
+                addition += storedNumberArr[i];
         }
-        console.log("sum of these values is: " + sum)
-        screen.innerText = sum;
-        return sum
+        console.log("sum of these values is: " + addition)
+        screen.innerText = addition;
+        return addition
     }
         
         // const sum = plusOperator(secondNumber, firstNumber) //put second number as first parameter as secondNumber has actually become the first number we entered and moved
@@ -126,15 +126,12 @@ const calculate = () => {
         screen.innerText = multiplication;
         return multiplication;                      // WORKING
     } 
-    else {
-        const divide = divideOperator(secondNumber, firstNumber)
-        console.log(divide);
-        const divideStr = divide.toString();
-        console.log(typeof divideStr);
-        screen.innerText = divideStr;
-        numberArr = [];
-        return divideStr;                                    // NOT YET CHANGED
-    }
+
+    // else {
+        let division = storedNumberArr.reduce((numberPlaceHolder1, numberPlaceHolder2) => numberPlaceHolder1 / numberPlaceHolder2);
+        console.log(`division value is currently: ${division}}`);
+        screen.innerText = division;
+                                                    // WORKING
 };
 
         // REMAINING ACTIONS
