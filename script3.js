@@ -114,19 +114,17 @@ const calculate = () => {
         let subtraction = storedNumberArr.reduce((numberPlaceHolder1, numberPlaceHolder2) => numberPlaceHolder1 - numberPlaceHolder2);
             console.log(`subtraction value is currently: ${subtraction}}`)
             screen.innerText = subtraction;
-            return subtraction                            // WORKING
+            return subtraction    ;                        // WORKING
     } 
 
 
 
     else if (oper === "x") {
-        const times = timesOperator(secondNumber, firstNumber)
-        console.log(times);  
-        const timesStr = times.toString();
-        console.log(typeof timesStr);
-        screen.innerText = timesStr;
-        numberArr = [];
-        return timesStr;                                    // NOT YET CHANGED
+        let multiplication = storedNumberArr.reduce((numberPlaceHolder1, numberPlaceHolder2) => numberPlaceHolder1 * numberPlaceHolder2);
+
+        console.log(`multiplication value is currently: ${multiplication}}`);
+        screen.innerText = multiplication;
+        return multiplication;                      // WORKING
     } 
     else {
         const divide = divideOperator(secondNumber, firstNumber)
