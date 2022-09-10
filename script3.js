@@ -29,7 +29,7 @@ numberButtons.forEach(number => {
         // console.log("this should show what's on the screen: " + screen.innerText);
         firstNumber = parseFloat(screen.innerText); 
         // console.log(typeof storedNumberArr)
-        console.log(`storedNumberArr is: ${storedNumberArr}`);
+        console.log(`entering new number storedNumberArr is: ${storedNumberArr}`);
         console.log("first number is: " + firstNumber + " type: " + typeof firstNumber + " and second number is: " + secondNumber + " type: " + typeof secondNumber)  // firstNumber variable now set
         // if (storedNumberArr > ) if statement here? If stored number array has more than 2 items, perform the calculation function? Then could display on screen?
     })
@@ -45,10 +45,14 @@ operatorButtons.forEach(operator => {          // when every operator button is 
         ///TURN THIS INTO A FOR LOOP? every time button clicked (starting second time), calculation occurs and number displayed on screen. Create it separately as a variable and add in here?
         numberArr = [];         // when clicking on oper, array clears
         oper = e.target.innerText; // oper variable gets set to either +, - , x, or /   
-        console.log(`storedNumberArr is: ${storedNumberArr}`); 
+        
         // console.log("operator is " + oper);//checking it works
         secondNumber = firstNumber;             // second number becomes equal to first number
-        storedNumberArr.push(secondNumber);  // secondNumber gets added to storedNumberArr
+        if (storedNumberArr.length === 0) {         // we will only add number to stored number arr if length is greater than 0 (allows us to calculate if number already present from prev calculation)
+            storedNumberArr.push(secondNumber); 
+        }
+    //  secondNumber gets added to storedNumberArr
+        console.log(`clicking operator storedNumberArr is: ${storedNumberArr}`); 
         firstNumber = "";                       // first number is set to empty string
         console.log("first number is: " + firstNumber + " type: " + typeof firstNumber + " second number is: " + secondNumber + " type: " + typeof secondNumber)
         // screen.innerText = oper;
@@ -81,7 +85,7 @@ equals.addEventListener('click', (e) => {
 // //CALCULATION
 const calculate = () => {
     storedNumberArr.push(firstNumber);
-    console.log(storedNumberArr);
+    console.log(`pressing equals storedNumberArr is: ${storedNumberArr}`);
     console.log(oper)
     if (oper === "+") {
             let addition = 0;
@@ -90,7 +94,11 @@ const calculate = () => {
         }
         console.log("sum of these values is: " + addition)
         screen.innerText = addition;
-        return addition
+        storedNumberArr = [];
+        firstNumber = 0;
+        secondNumber = 0;
+        storedNumberArr.push(addition);
+        return storedNumberArr;
     }
         
         // const sum = plusOperator(secondNumber, firstNumber) //put second number as first parameter as secondNumber has actually become the first number we entered and moved
@@ -114,7 +122,11 @@ const calculate = () => {
         let subtraction = storedNumberArr.reduce((numberPlaceHolder1, numberPlaceHolder2) => numberPlaceHolder1 - numberPlaceHolder2);
             console.log(`subtraction value is currently: ${subtraction}}`)
             screen.innerText = subtraction;
-            return subtraction    ;                        // WORKING
+            storedNumberArr = [];
+            firstNumber = 0;
+            secondNumber = 0;
+            storedNumberArr.push(subtraction);
+            return storedNumberArr    ;                        // WORKING
     } 
 
 
@@ -122,27 +134,30 @@ const calculate = () => {
     else if (oper === "x") {
         let multiplication = storedNumberArr.reduce((numberPlaceHolder1, numberPlaceHolder2) => numberPlaceHolder1 * numberPlaceHolder2);
 
-        console.log(`multiplication value is currently: ${multiplication}}`);
+        console.log(`multiplication value is currently: ${multiplication}`);
         screen.innerText = multiplication;
-        return multiplication;                      // WORKING
+        storedNumberArr = [];
+        console.log(`clearing array storedNumberArr is currently ${storedNumberArr}`)
+        storedNumberArr.push(multiplication);
+        console.log(`after .push to add multiplication result, storedNumberArr is currently ${storedNumberArr}`)
+
+        return storedNumberArr;                      // WORKING
     } 
 
     // else {
         let division = storedNumberArr.reduce((numberPlaceHolder1, numberPlaceHolder2) => numberPlaceHolder1 / numberPlaceHolder2);
-        console.log(`division value is currently: ${division}}`);
+        console.log(`division value is currently: ${division}`);
         screen.innerText = division;
+        storedNumberArr = [];
+        firstNumber = 0;
+        secondNumber = 0;
+        storedNumberArr.push(division);
+        return storedNumberArr;
                                                     // WORKING
 };
 
         // REMAINING ACTIONS
-    // make additions of multiple numbers work e.g. 5 + 9 + 10 = 24
-    // for the above - could we add the typed numbers into an array and we can fetch the items when needed?
-    // for the above - for the calculation, we could loop through the array to do this?
-
-
-    // make decimal point work - don't let it be possible to type in two. 
     // make screen responsive to size when number gets too large e.g. lots of decimal places (use 'auto' size for this?)
-    // change the name of the first and second number variables to make them make more sense
     // make the calculator only use the last operand entered. E.g. currently it won't work if clicking + then changing mind and hitting -
     // need to be able to perform operation on screen value after calculation
     // if equals is pressed and nothing on screen - don't do anything

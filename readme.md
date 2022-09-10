@@ -23,42 +23,7 @@ On top of this I conducted my own independent research into certain methods new 
 
 ---
 
-## Help
-
-Any advise for common problems or issues.
-
-command to run if program contains helper info
-
----
-
-## Authors
-
-Contributors names and contact info
-
-ex. Dominique Pizzie
-ex. @DomPizzie
-
----
-
 ## Version History
 
-0.2
-Various bug fixes and optimizations
-See commit change or See release history
 0.1
-Initial Release
-
----
-
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-
-- awesome-readme
-w3 schools?
-mozilla one? for reference?
-nology for the course?
-- PurpleBooth
-- dbader
-- zenorocha
-- fvcproductions
+0.2
