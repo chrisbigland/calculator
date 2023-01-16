@@ -1,240 +1,177 @@
-// first script - works with single digits only
 //VARIABLES
 const numberButtons = document.querySelectorAll(".number-button");
 const operatorButtons = document.querySelectorAll(".operator-button");
 const screen = document.querySelector("#screen");
 const equals = document.querySelector("#equals");
 const onButton = document.querySelector("#on-button");
-
-console.log(numberButtons);
-
+const errorWarning = document.querySelector("#char-error");
 
 let firstNumber = "";
 let oper = "";
 let secondNumber = "";
+let storedNumberArr = [];
+let numberArr = [];
 
-// const updateDisplay = (number) => {
-//     screen.innerText = number;
-// }
+onButton.addEventListener("click", () => {
+  screen.innerText = "0";
+  numberArr = [];
+  storedNumberArr = [];
+  errorWarning.hidden = true;
+});
 
-//CLEAR SCREEN
-onButton.addEventListener('click', () => {
-    screen.innerText = ("0");
-})
+numberButtons.forEach((number) => {
+  number.addEventListener("click", (e) => {
+    numberArr.push(e.target.innerText);
+    if (numberArr.length > 7) {
+      screen.style.fontSize = "2em";
+    }
+    if (numberArr.length > 14) {
+      screen.style.fontSize = "1em";
+    }
+    if (numberArr.length <= 7) {
+      screen.style.fontSize = "4em";
+    }
+    console.log(numberArr);
+    if (numberArr.length <= 28) {
+      screen.innerText = numberArr.join("");
+    } else {
+      errorWarning.hidden = false;
+    }
+    firstNumber = parseFloat(screen.innerText);
+    console.log(`entering new number storedNumberArr is: ${storedNumberArr}`);
+    console.log(
+      "first number is: " +
+        firstNumber +
+        " type: " +
+        typeof firstNumber +
+        " and second number is: " +
+        secondNumber +
+        " type: " +
+        typeof secondNumber
+    );
+  });
+});
 
-
-// added for 
-//creating a for each to loop through the node list 
-numberButtons.forEach(number => {
-    number.addEventListener('click', (e) => {
-        // console.log(e.target.innerText);
-        firstNumber = e.target.innerText;   // updating the variable to what is clicked
-        console.log("first number is " + firstNumber);  //checking it works
-        screen.innerText = firstNumber;   // change this to a new function called update display??
-            // if (number.addEventListener('click', (e) => { != "" || firstNumber != 0) {    Maybe add an event listener for if there is a second click?
-            // number.addEventListener('click', (e) => {
-        updateDisplay();
-        return firstNumber; 
-        
-        // updateDisplay(initialNumber);
-    })
-})
-
-// const updateDisplay = () => {
-//     if (screen.innerText != "" || screen.innerText > 0) {
-//         numberButtons.forEach(number => {
-//             number.addEventListener('click', (e) => {
-//                 const secondDigit = e.target.innerText;
-//                 console.log("first number type is " + typeof firstNumber)
-//                 console.log("secondDigit type is " + typeof secondDigit)
-//                 console.log("firstNumber is " + firstNumber)
-//                 console.log("secondDigit is " + secondDigit)
-//                 const fullNumber = firstNumber + secondDigit;
-//                 // screen.innerText = fullNumber;
-//             })
-//     })
-
-// }}
-
-
-operatorButtons.forEach(operator => {          // when every operator button is clicked, updating 'oper' variable to the operation e.g. times
-    operator.addEventListener('click', (e) => {
-        oper = e.target.innerText;              //checking it works
-        console.log("operator is " + oper);
-        secondNumber = firstNumber;             // second number equal to first number
-        firstNumber = "";                       // first number set to empty string
-        console.log("second number is: " + secondNumber + " and first number is: " + firstNumber)
-        return oper;                            // returning the clicked operator
-    })
-})
+//OPERATOR EVENT LISTENER + / X -
+operatorButtons.forEach((operator) => {
+  operator.addEventListener("click", (e) => {
+    numberArr = [];
+    oper = e.target.innerText;
+    secondNumber = firstNumber;
+    if (storedNumberArr.length === 0) {
+      storedNumberArr.push(secondNumber);
+    }
+    console.log(`clicking operator storedNumberArr is: ${storedNumberArr}`);
+    firstNumber = "";
+    console.log(
+      "first number is: " +
+        firstNumber +
+        " type: " +
+        typeof firstNumber +
+        " second number is: " +
+        secondNumber +
+        " type: " +
+        typeof secondNumber
+    );
+    return oper;
+  });
+});
 
 //FUNCTIONS
 //OPERATOR FUNCTIONS
-const plusOperator = (a, b) => parseFloat(a) + parseFloat(b); // turning the string parameters into numbers - shorthand everything after arrow is assumed to be returned - can do this was was previously just one line return
+// const plusOperator = (a, b) => parseFloat(a) + parseFloat(b);
 
-const minusOperator = (a, b) => parseFloat(a) - parseFloat(b);                    
+// const minusOperator = (a, b) => parseFloat(a) - parseFloat(b);
 
-const timesOperator = (a, b) => parseFloat(a) * parseFloat(b);
+// const timesOperator = (a, b) => parseFloat(a) * parseFloat(b);
 
-const divideOperator = (a, b) => parseFloat(a) / parseFloat(b);
-
+// const divideOperator = (a, b) => parseFloat(a) / parseFloat(b);
 
 //EQUALS CLICK EVENT LISTENER
-equals.addEventListener('click', (e) => {
-    // secondNumber = screen.innerText; // secondNumber set to what's on screen when hitting equals - why did I not need the event passed through here?
-    // console.log(`firstNumber: ${firstNumber}`, `secondNumber: ${secondNumber}`)
+equals.addEventListener("click", (e) => {
 
+  if (storedNumberArr.length >= 1) {
     calculate();
-    // console.log();
-    });
-
-//creating variables to store the result of the calculation
-// const sum = plusOperator(firstNumber, secondNumber)
-// const minus = minusOperator(firstNumber, secondNumber)
-// const times = timesOperator(firstNumber, secondNumber)
-// const divide = divideOperator(firstNumber, secondNumber)
-
+  }
+});
 
 // //CALCULATION
-    const calculate = () => {
-        if (oper === "+") {
-            const sum = plusOperator(secondNumber, firstNumber) //put second number as first parameter as secondNumber has actually become the first number we entered and moved
-            console.log(typeof sum);
-            const sumStr = sum.toString();
-            console.log(typeof sumStr);
-            screen.innerText = sumStr;
-            return sumStr;                                      // WORKING
-        } 
-        else if (oper === "-") {
-            const minus = minusOperator(secondNumber, firstNumber)
-            console.log(minus);
-            const minusStr = minus.toString();
-            console.log(typeof minusStr);
-            screen.innerText = minusStr;
-            return minusStr;                                    // WORKING
-        } 
-        else if (oper === "x") {
-            const times = timesOperator(secondNumber, firstNumber)
-            console.log(times);  
-            const timesStr = times.toString();
-            console.log(typeof timesStr);
-            screen.innerText = timesStr;
-            return timesStr;                                    // WORKING
-        } 
-        else {
-            const divide = divideOperator(secondNumber, firstNumber)
-            console.log(divide);
-            const divideStr = divide.toString();
-            console.log(typeof divideStr);
-            screen.innerText = divideStr;
-            return divideStr;                                    // WORKING
-        }
-    };
+const calculate = () => {
+  storedNumberArr.push(firstNumber);
+  console.log(`pressing equals storedNumberArr is: ${storedNumberArr}`);
+  console.log(oper);
+  if (oper === "+") {
+    let addition = 0;
+    for (let i = 0; i < storedNumberArr.length; i++) {
+      addition += storedNumberArr[i];
+    }
+    console.log("sum of these values is: " + addition);
+    screen.innerText = addition;
+    storedNumberArr = [];
+    firstNumber = 0;
+    secondNumber = 0;
+    storedNumberArr.push(addition);
+    return storedNumberArr;
+  } else if (oper === "-") {
+    let subtraction = storedNumberArr.reduce(
+      (numberPlaceHolder1, numberPlaceHolder2) =>
+        numberPlaceHolder1 - numberPlaceHolder2
+    );
+    console.log(`subtraction value is currently: ${subtraction}}`);
+    screen.innerText = subtraction;
+    storedNumberArr = [];
+    firstNumber = 0;
+    secondNumber = 0;
+    storedNumberArr.push(subtraction);
+    return storedNumberArr; 
+  } else if (oper === "x") {
+    let multiplication = storedNumberArr.reduce(
+      (numberPlaceHolder1, numberPlaceHolder2) =>
+        numberPlaceHolder1 * numberPlaceHolder2
+    );
 
+    console.log(`multiplication value is currently: ${multiplication}`);
+    screen.innerText = multiplication;
+    storedNumberArr = [];
+    console.log(
+      `clearing array storedNumberArr is currently ${storedNumberArr}`
+    );
+    storedNumberArr.push(multiplication);
+    console.log(
+      `after .push to add multiplication result, storedNumberArr is currently ${storedNumberArr}`
+    );
 
-    // REMAINING ACTIONS
-    // make multiple digit numbers appear and calculations work
-    //when someone hits 'ON/AC' - screen should clear
-    // make additions of multiple numbers work e.g. 5 + 9 + 10 = 24
-    // make decimal point work
-    // make screen responsive to size when number gets too large e.g. lots of decimal places (use 'auto' size for this?)
-    // change the name of the first and second number variables to make them make more sense
-    // make the calculator only use the last operand entered. E.g. currently it won't work if clicking + then changing mind and hitting -
+    return storedNumberArr; 
+  } else {
+    let division = storedNumberArr.reduce(
+      (numberPlaceHolder1, numberPlaceHolder2) =>
+        numberPlaceHolder1 / numberPlaceHolder2
+    );
+    console.log(`division value is currently: ${division}`);
+    {
+      screen.innerText = division;
+      storedNumberArr = [];
+      firstNumber = 0;
+      secondNumber = 0;
+      storedNumberArr.push(division);
+      return storedNumberArr;
+    }
+  }
+};
 
+// REMAINING ACTIONS
+// make the calculator only use the last operand entered. E.g. currently it won't work if clicking + then changing mind and hitting -
+// 63 + 1 = 64 press equals again and then 3 and it says '13' on screen - fix this. 
 
+//  const numberVariablesForLoop = () => {
 
-    //CLEAR SCREEN
-    //
-
-    // screen.EventListener("click", (e) => {
-    //     screen.innerText = "0";
-    // });
-
-
-// when pressing equals - set second variable and perform calculation??
-
-
-
-
-//     numberButtons.forEach(number => {
-//     number.addEventListener('click', (e) => {
-//         secondNumber = e.target.innerText;   // updating the variable to what is clicked
-//         console.log(secondNumber);  //checking it works
-//         screen.innerText = secondNumber;      
-//     })
-// })
+//     for (let i = 1; i < storedNumberArr.length; i++) {
+//         console.log(`for loop stored number Array ${storedNumberArr[i]}`);
+//     }
 // }
 
+// store all of the numbers into an array and loop them to perform the calculation. for the subtotal, use a for loop but only start it on index 1 (second number)
+//FOR LOOP - for each click of the operator button, starting on the second click, of the array, add
+//simpler?? the result of the calculation gets subtotalled in a variable and that gets added when equals is pressed
 
-
-// then could do if secondNumber has a value
-
-
-// forEach for storing second number variable. 
-// numberButtons.forEach(number => {
-//     number.addEventListener('click', (e) => {
-//         secondNumber = e.target.innerText;   // updating the variable to what is clicked
-//         console.log(secondNumber);  //checking it works
-//         screen.innerText = secondNumber;      
-//     })
-// })
-
-
-// //calculation function
-// const calculate = (firstNumber, secondNumber, operator) => {
-//     console.log(firstNumber);
-//     console.log(operator)
-//     console.log(secondNumber);
-// }
-
-// run this in something else - calculate();
-
-// equals.addEventListener('click', () => {
-//     calculate(firstNumber)
-// });
-
-
-
-
-////PREVIOUS NOTES
-
-
-// //JS ideas 
-// // each number pressed will add on to the end of the number on the screen 
-// // when making the calculations - I believe the screen value will be a string - might need to change it to a number to perform the calculation?
-// // need to create a function to clear the text from the screen when 
-// // need to create a variable that logs the number in the screen when an operator button is clicked. 
-// // const firstNumber = 
-// // how do I log the second number after the operator button pressed?
-
-// //could create displayValue function that we can invoke to ensure that the screen is always updated. 
-
-
-// //FUNCTIONS
-// // need to include an if statement here to clear any value if there is something there and set to zero. 
-
-
-
-// // CALCULATION FUNCTIONS
-// // const handlePlus = () => {
-// //     //turn screen value into number then plus it then return back as a string?
-// //     // screen.value 
-// // }
-
-// // console.log(screen.value)
-
-
-// //entering a number on the screen.  
-// //get the value from the screen so that I can add to the value to display number we're entering
-
-
-
-
-// // CHANGES - perhaps instead of having lots of functions I just have one update display function
-// //potential update display function
-
-// // const updateDisplay = () => {
-// //     const screen.value = 
-
-//     // I want to set the value in the screen to the value inside the string on the screen when clicking an operator button. 
-// // }
+// if it is the second time that a number is entered, perform the calculation function and save the answer of that in a vari
