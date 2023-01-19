@@ -77,24 +77,14 @@ operatorButtons.forEach((operator) => {
   });
 });
 
-//FUNCTIONS
-//OPERATOR FUNCTIONS
-// const plusOperator = (a, b) => parseFloat(a) + parseFloat(b);
-
-// const minusOperator = (a, b) => parseFloat(a) - parseFloat(b);
-
-// const timesOperator = (a, b) => parseFloat(a) * parseFloat(b);
-
-// const divideOperator = (a, b) => parseFloat(a) / parseFloat(b);
-
 //EQUALS CLICK EVENT LISTENER
 equals.addEventListener("click", (e) => {
-
   if (storedNumberArr.length >= 1) {
     calculate();
   }
 });
 
+//FUNCTIONS
 // //CALCULATION
 const calculate = () => {
   storedNumberArr.push(firstNumber);
@@ -123,7 +113,7 @@ const calculate = () => {
     firstNumber = 0;
     secondNumber = 0;
     storedNumberArr.push(subtraction);
-    return storedNumberArr; 
+    return storedNumberArr;
   } else if (oper === "x") {
     let multiplication = storedNumberArr.reduce(
       (numberPlaceHolder1, numberPlaceHolder2) =>
@@ -141,7 +131,7 @@ const calculate = () => {
       `after .push to add multiplication result, storedNumberArr is currently ${storedNumberArr}`
     );
 
-    return storedNumberArr; 
+    return storedNumberArr;
   } else {
     let division = storedNumberArr.reduce(
       (numberPlaceHolder1, numberPlaceHolder2) =>
@@ -158,20 +148,3 @@ const calculate = () => {
     }
   }
 };
-
-// REMAINING ACTIONS
-// make the calculator only use the last operand entered. E.g. currently it won't work if clicking + then changing mind and hitting -
-// 63 + 1 = 64 press equals again and then 3 and it says '13' on screen - fix this. 
-
-//  const numberVariablesForLoop = () => {
-
-//     for (let i = 1; i < storedNumberArr.length; i++) {
-//         console.log(`for loop stored number Array ${storedNumberArr[i]}`);
-//     }
-// }
-
-// store all of the numbers into an array and loop them to perform the calculation. for the subtotal, use a for loop but only start it on index 1 (second number)
-//FOR LOOP - for each click of the operator button, starting on the second click, of the array, add
-//simpler?? the result of the calculation gets subtotalled in a variable and that gets added when equals is pressed
-
-// if it is the second time that a number is entered, perform the calculation function and save the answer of that in a vari
